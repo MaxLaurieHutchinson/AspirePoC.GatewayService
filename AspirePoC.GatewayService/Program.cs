@@ -1,5 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
+
 builder.Services
     .AddCors()
     .AddHeaderPropagation(c =>
@@ -14,9 +16,13 @@ builder.Services
 
 builder.Services
     .AddFusionGatewayServer()
-    .ConfigureFromCloud();
+    .ConfigureFromFile(
+        gatewayConfigurationFile: "./gateway.fgp",
+        watchFileForUpdates: true);
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 
 app.UseWebSockets();
 app.UseCors(c => c.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());

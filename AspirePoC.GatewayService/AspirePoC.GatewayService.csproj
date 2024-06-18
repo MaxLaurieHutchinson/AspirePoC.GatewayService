@@ -16,4 +16,8 @@
     <PackageReference Include="HotChocolate.Fusion" Version="13.9.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\AspirePoC.Orchestration\Core\ServiceDefaults\ServiceDefaults.csproj" />
+  </ItemGroup>
+
 </Project>
